@@ -116,26 +116,26 @@ def populate_next_gen_world():
                 if live_neighbours_count < 2:
                     # the cell dies
                     next_gen_world[x][y] = 0
-                    input("condition 1: Any live cell with fewer than two live neighbors dies as if caused by underpopulation: x = " + str(x) + ", y = " + str(y))
+                    input("condition 1 (dies): Any live cell with fewer than two live neighbors dies as if caused by underpopulation: x = " + str(x) + ", y = " + str(y))
 
                 # 2. Any live cell with two or three live neighbors lives on to the next generation.
                 elif live_neighbours_count == 2 or live_neighbours_count == 3:
                     # the cell lives
                     next_gen_world[x][y] = 1
-                    input("condition 2: Any live cell with two or three live neighbors lives on to the next generation: x = " + str(x) + ", y = " + str(y))
+                    input("condition 2 (lives): Any live cell with two or three live neighbors lives on to the next generation: x = " + str(x) + ", y = " + str(y))
 
                 # 3. Any live cell with more than three live neighbors dies, as if by overcrowding.
                 elif live_neighbours_count > 3:
                     # the cell dies
                     next_gen_world[x][y] = 0
-                    input("condition 3: Any live cell with more than three live neighbors dies, as if by overcrowding: x = " + str(x) + ", y = " + str(y))
+                    input("condition 3 (dies): Any live cell with more than three live neighbors dies, as if by overcrowding: x = " + str(x) + ", y = " + str(y))
             # dead cell
             else:
                 # 4. Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
                if live_neighbours_count == 3:
                     # the cell lives
                     next_gen_world[x][y] = 1
-                    input("condition 4: Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction: x = " + str(x) + ", y = " + str(y))
+                    input("condition 4 (lives): Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction: x = " + str(x) + ", y = " + str(y))
 
     return next_gen_world
 
