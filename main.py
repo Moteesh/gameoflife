@@ -53,7 +53,8 @@ def print_world(generation):
               row.append("X("+str(x)+","+str(y)+")")
               alive_indices.append((x,y))
             else:
-              row.append("("+str(x)+","+str(y)+")")
+              # row.append("("+str(x)+","+str(y)+")")
+              row.append(" ")
         user_friendly_world.append(row)
     print("User friendly world: Generation =", generation)
     for x in range(0, len(user_friendly_world)):
