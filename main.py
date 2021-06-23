@@ -43,6 +43,7 @@ def initialize_world_random():
 
 def print_world(generation):
     global world
+    alive_indices = []
     user_friendly_world = []
     for x in range(0, len(world)):
         print(world[x])
@@ -50,44 +51,48 @@ def print_world(generation):
         for y in range(0, len(world[x])):
             if world[x][y]:
               row.append("A")
+              alive_indices.append((x,y))
             else:
               row.append("D")
         user_friendly_world.append(row)
     print("User friendly world: Generation =", generation)
     for x in range(0, len(user_friendly_world)):
         print(user_friendly_world[x])
+    print("Alive indices: Generation =", generation)
+    print(alive_indices)
     
 
 def get_live_neighbours_count(x, y):
     global world
     count = 0
-    # left and right squares
-    if world[x][y-1]:
-        count += 1
-    if world[x][y+1]:
-        count += 1
+    if x < len(world) and y < len(world[x]):
+        # left and right squares
+        if y-1 >= 0 and world[x][y-1]:
+            count += 1
+        if y+1 < len(world[x]) and world[x][y+1]:
+            count += 1
 
-    # top and bottom squares
-    if world[x-1][y]:
-        count += 1
-    if world[x+1][y]:
-        count += 1
+        # top and bottom squares
+        if x-1 >= 0 and world[x-1][y]:
+            count += 1
+        if x+1 < len(world) and world[x+1][y]:
+            count += 1
 
-    # top left square
-    if world[x-1][y-1]:
-        count += 1
+        # top left square
+        if x-1 >= 0 and y-1 >= 0 and world[x-1][y-1]:
+            count += 1
 
-    # top right square
-    if world[x-1][y+1]:
-        count += 1
+        # top right square
+        if x-1 >= 0 and y+1 < len(world[x]) and world[x-1][y+1]:
+            count += 1
 
-    # bottom left square
-    if world[x+1][y-1]:
-        count += 1
+        # bottom left square
+        if x+1 < len(world) and y-1 >= 0 and world[x+1][y-1]:
+            count += 1
 
-    # bottom right square
-    if world[x+1][y+1]:
-        count += 1
+        # bottom right square
+        if x+1 < len(world) and y+1 < len(world[x]) and world[x+1][y+1]:
+            count += 1
 
     return count
 
@@ -135,11 +140,12 @@ def tick():
 
 #initialize_world_random(5)
 initialize_world()
+print_world(0)
 keep_ticking = True
 while(keep_ticking):
-    tick()
     answer = input("Keep ticking (Y/n) :")
     if answer.lower().startswith("n"):
         keep_ticking = False
-
+    else:
+        tick()
 
