@@ -50,10 +50,10 @@ def print_world(generation):
         row = []
         for y in range(0, len(world[x])):
             if world[x][y]:
-              row.append("A")
+              row.append("X")
               alive_indices.append((x,y))
             else:
-              row.append("D")
+              row.append(" ")
         user_friendly_world.append(row)
     print("User friendly world: Generation =", generation)
     for x in range(0, len(user_friendly_world)):
